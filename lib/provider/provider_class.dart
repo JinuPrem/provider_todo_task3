@@ -11,15 +11,24 @@ class Provider_class extends ChangeNotifier{
 
 
   void addTodo (String items){
-    final favTaskList = _favTask.contains(items);
+    // final favTaskList = _favTask.contains(items);
  _favTask.add(TaskModelClass(items: items,isCompleted: false));
     notifyListeners();
 
   }
 
-  void removeToDo(String items){
-    final favTaskList=_favTask.contains(items);
-    _favTask.remove(TaskModelClass(items: items, isCompleted: false));
+  void removeToDo(TaskModelClass items){
+    // final favTaskList=_favTask.contains(items);
+    _favTask.remove(items);
+    notifyListeners();
+
+  }
+
+  void checkComplete(TaskModelClass items){
+    final itemindex=_favTask.indexOf(items);
+    _favTask[itemindex].complete();
+    notifyListeners();
+
   }
 
 }
